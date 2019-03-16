@@ -1,3 +1,6 @@
 true,Carlos,0.0,120000.0,
 false,Kevin,500000.0,
 false,Oliva,600000.0,
+true,Kevin,0.0,90000.0,
+false,Kevin,200000.0,
+false,Giovanny,800000.0,

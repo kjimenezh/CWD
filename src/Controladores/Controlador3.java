@@ -56,12 +56,18 @@ public class Controlador3 {
  
         @Override
         public void handle(ActionEvent e) {   
-            Aportante aportante = crowd.getSubasta(nombre).getOfertas().get(crowd.getSubasta(nombre).getOfertas().size()-1);
-            view.getFinish().setText("El ganador fue: "+aportante.getNombre());
+            if(crowd.getSubasta(nombre).getOfertas().get(crowd.getSubasta(nombre).getOfertas().size()-1).getValoroferta()<crowd.getSubasta(nombre).getPrecioReserva()){
+                view.getFinish().setText("No se llego el precio minimo aceptado");
+                crowd.getSubasta(nombre).getOfertas().get(crowd.getSubasta(nombre).getOfertas().size()-1).setNombre("Ninguno");
+                crowd.getSubasta(nombre).getOfertas().get(crowd.getSubasta(nombre).getOfertas().size()-1).setValoroferta(0);
+            }else{
+                Aportante aportante = crowd.getSubasta(nombre).getOfertas().get(crowd.getSubasta(nombre).getOfertas().size()-1);
+                view.getFinish().setText("El ganador fue: "+aportante.getNombre());
             
-            crowd.getSubasta(nombre).setTransaccion(50000, crowd.getSubasta(nombre).getDemanda(), aportante);
-            crowd.getSubasta(nombre).getDemanda().setTransaccion(crowd.getSubasta(nombre).getTransaccion());
-            aportante.setTransaccion(crowd.getSubasta(nombre).getTransaccion());
+                crowd.getSubasta(nombre).setTransaccion(50000, crowd.getSubasta(nombre).getDemanda(), aportante);
+                crowd.getSubasta(nombre).getDemanda().setTransaccion(crowd.getSubasta(nombre).getTransaccion());
+                aportante.setTransaccion(crowd.getSubasta(nombre).getTransaccion()); 
+            }
         }   
     }
     
