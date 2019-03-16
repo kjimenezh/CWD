@@ -18,7 +18,7 @@ public class Main extends Application{
         Singleton singleton = Singleton.getSingleton();
         singleton.setStage(primaryStage);
         
-        GestionArchivo archivo = new GestionArchivo("DatosSubastas.txt");
+        GestionArchivo archivo = new GestionArchivo("DatosPersonas.txt","DatosSubastas.txt");
 
         Crowdfounding crowd = new Crowdfounding();
         //crowd.setUsers(archivo.loadUsers());
