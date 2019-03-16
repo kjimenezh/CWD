@@ -55,5 +55,9 @@ public class Aportante extends Persona{
     public void setTransaccion(Transaccion transaccion) {
         this.transaccion = transaccion;
     }
-    
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+ 
 }

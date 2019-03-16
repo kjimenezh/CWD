@@ -11,13 +11,14 @@ public class Main extends Application{
 /**
  *
 * @author kjime
+     * @throws java.lang.Exception
  */
     @Override
     public void start(Stage primaryStage) throws Exception {
         Singleton singleton = Singleton.getSingleton();
         singleton.setStage(primaryStage);
         
-        //GestionArchivo archivo = new GestionArchivo("datos.txt");
+        GestionArchivo archivo = new GestionArchivo("DatosSubastas.txt");
 
         Crowdfounding crowd = new Crowdfounding();
         //crowd.setUsers(archivo.loadUsers());
