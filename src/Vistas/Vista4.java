@@ -70,7 +70,7 @@ public class Vista4 {
         grid.add(valorcAT, 1, 2);
         valoroA = new Label("Valor de oferta: ");
         grid.add(valoroA, 0, 3);
-        nombreAT = new TextField();
+        valoroAT = new TextField();
         grid.add(valoroAT, 1, 3);
         tasaoA = new Label("Tasa de interés: ");
         grid.add(tasaoA, 0, 4);
