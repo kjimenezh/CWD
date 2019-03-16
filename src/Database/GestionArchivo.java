@@ -18,12 +18,10 @@ import Modelo.Subasta;
  * @author kjime
  */
 public class GestionArchivo {
-    private String rutaPersonas;
-    private String rutaSubastas;
+    private String ruta;
 
-    public GestionArchivo(String rutaPersonas, String rutaSubastas) {
-        this.rutaPersonas = rutaPersonas;
-        this.rutaSubastas = rutaSubastas;
+    public GestionArchivo(String ruta) {
+        this.ruta = ruta;
     }
     
     //El formato de guardado por linea es: true,Nombre,ValorenCuenta,InversionRequerida,
@@ -31,7 +29,7 @@ public class GestionArchivo {
         BufferedWriter salida = null;
         FileWriter fw = null;
 
-        File file = new File(this.rutaPersonas);
+        File file = new File(this.ruta);
         if (!file.exists()) {
             file.createNewFile();
         }
@@ -58,7 +56,7 @@ public class GestionArchivo {
         BufferedWriter salida = null;
         FileWriter fw = null;
 
-        File file = new File(this.rutaPersonas);
+        File file = new File(this.ruta);
         if (!file.exists()) {
             file.createNewFile();
         }
@@ -78,11 +76,11 @@ public class GestionArchivo {
         return true;
     }
     
-    public boolean saveSubasta(double valorSubastado, String nombrePromotor, String nombreGanador, double valorOferta) throws IOException{
+    public boolean saveSubasta(Subasta subasta) throws IOException{
         BufferedWriter salida = null;
         FileWriter fw = null;
 
-        File file = new File(this.rutaSubastas);
+        File file = new File(this.ruta);
         if (!file.exists()) {
             file.createNewFile();
         }
@@ -91,14 +89,16 @@ public class GestionArchivo {
         fw = new FileWriter(file.getAbsoluteFile(), true);
         salida = new BufferedWriter(fw);
         
-        salida.write(String.valueOf(valorSubastado));
+        salida.write(String.valueOf(subasta.getPrecioReserva()));
         salida.write(",");
-        salida.write(nombrePromotor);
+        salida.write(String.valueOf(subasta.getDemanda().getInversionRequerida()));
         salida.write(",");
-        salida.write(nombreGanador);
+        salida.write(subasta.getDemanda().getNombre());
         salida.write(",");
-        salida.write(String.valueOf(valorOferta));
-        salida.write(",\n");
+        salida.write(subasta.getOfertas().get(subasta.getOfertas().size()-1).getNombre());
+        salida.write(",");
+        salida.write(String.valueOf(subasta.getOfertas().get(subasta.getOfertas().size()-1).getValoroferta()));
+        salida.write(",");
         salida.flush();
         salida.close();
         return true;
@@ -109,7 +109,7 @@ public class GestionArchivo {
         Scanner sc;
         
         try {
-            sc = new Scanner(new File(this.rutaPersonas));
+            sc = new Scanner(new File(this.ruta));
             sc.useDelimiter(",");
             while (sc.hasNext()) {
                 boolean promotor = Boolean.parseBoolean(sc.next().trim());
@@ -128,7 +128,7 @@ public class GestionArchivo {
                 personas.add(persona);
             }
 	}catch (FileNotFoundException e) {
-            System.out.println("File not found -- " + this.rutaPersonas);
+            System.out.println("File not found -- " + this.ruta);
             e.printStackTrace();
 	}
 	return personas;
@@ -136,33 +136,27 @@ public class GestionArchivo {
     
     public ArrayList<Subasta> loadSubastas(){
         ArrayList<Subasta> subastas = new ArrayList<Subasta>();
-        ArrayList<Persona> personas = loadPersonas();
         Scanner sc;
         
         try {
-            sc = new Scanner(new File(this.rutaSubastas));
+            sc = new Scanner(new File(this.ruta));
             sc.useDelimiter(",");
             while (sc.hasNext()) {
                 double precioReserva = Double.parseDouble(sc.next().trim());
+                double valorSubasta = Double.parseDouble(sc.next().trim());
                 String nombrePromotor = sc.next().trim();
                 String nombreGanador = sc.next().trim();
                 double valorOferta = Double.parseDouble(sc.next().trim());
-                Promotor promotor = null;
-                Aportante aportante = null;
-                for (int i = 0; i < personas.size(); i++) {
-                    if (personas.get(i).getNombre().equals(nombrePromotor)) {
-                        promotor = (Promotor) personas.get(i);
-                    }
-                    if (personas.get(i).getNombre().equals(nombreGanador)) {
-                        aportante = (Aportante) personas.get(i);
-                    }
-                }
+                Promotor promotor = new Promotor(nombrePromotor,valorSubasta);
+                Aportante aportante= new Aportante(nombreGanador,valorOferta);
+                aportante.setValoroferta(valorOferta);
+                
                 Subasta subasta = new Subasta(precioReserva,promotor);
-                subasta.setTransaccion(precioReserva, promotor, aportante);
+                subasta.addOferta(aportante);
                 subastas.add(subasta);
             }
 	}catch (FileNotFoundException e) {
-            System.out.println("File not found -- " + this.rutaPersonas);
+            System.out.println("File not found -- " + this.ruta);
             e.printStackTrace();
 	}
 	return subastas;

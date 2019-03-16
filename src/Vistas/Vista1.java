@@ -23,6 +23,7 @@ public class Vista1 {
 
     private Button iniciar;
     private Button subastas;
+    private Button salir;
     private Image image;
 
     public Vista1(){
@@ -44,8 +45,10 @@ public class Vista1 {
 
         iniciar = new Button("Iniciar Subasta");
         subastas = new Button("Subastas Realizadas");
+        salir = new Button("Salir");
         grid.add(iniciar, 0, 0);
-        grid.add(subastas, 0, 4);
+        grid.add(subastas, 0, 2);
+        grid.add(salir, 0, 4);
         
         
         pane.setAlignment(Pos.CENTER);
@@ -67,4 +70,8 @@ public class Vista1 {
         return subastas;
     }
 
+    public Button getSalir() {
+        return salir;
+    }
+    
 }

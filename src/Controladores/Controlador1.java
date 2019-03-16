@@ -24,6 +24,7 @@ public class Controlador1 {
        
         view.getIniciar().setOnAction(new iniciarEvento()); 
         view.getSubastas().setOnAction(new subastasEvento());
+        view.getSalir().setOnAction(new salirEvento());
     }
     
     public void mostrarVista(){
@@ -46,6 +47,15 @@ public class Controlador1 {
         public void handle(ActionEvent e) {   
             Controladorlista controladorlista = new Controladorlista(crowd);
             controladorlista.mostrarVista();;
+        }
+    }
+    
+    //Colocar instruccion para salir
+    class salirEvento implements EventHandler<ActionEvent>{
+ 
+        @Override
+        public void handle(ActionEvent e) {   
+            
         }
     }
 }

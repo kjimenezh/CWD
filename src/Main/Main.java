@@ -18,14 +18,12 @@ public class Main extends Application{
         Singleton singleton = Singleton.getSingleton();
         singleton.setStage(primaryStage);
         
-        GestionArchivo archivo = new GestionArchivo("DatosPersonas.txt","DatosSubastas.txt");
+        GestionArchivo archivo = new GestionArchivo("DatosSubastas.txt");
 
         Crowdfounding crowd = new Crowdfounding();
-        //crowd.setUsers(archivo.loadUsers());
-        //invocar el controlador de la vista que quiero visualizar
+        crowd.setSubastas(archivo.loadSubastas());
         Controlador1 controlador1 = new Controlador1(crowd);
         controlador1.mostrarVista();
-        System.out.println("ver");
     }
     
     public static void main(String[] args) {

@@ -31,4 +31,10 @@ public class Crowdfounding {
         }
         return subasta;
     }
+
+    public void setSubastas(ArrayList<Subasta> subastas) {
+        this.subastas = subastas;
+    }
+    
+    
 }
