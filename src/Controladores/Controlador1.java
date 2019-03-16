@@ -23,7 +23,7 @@ public class Controlador1 {
         this.view = new Vista1();
        
         view.getIniciar().setOnAction(new iniciarEvento()); 
-        //view.getSubastas().setOnAction(new subastasEvento());
+        view.getSubastas().setOnAction(new subastasEvento());
     }
     
     public void mostrarVista(){
@@ -40,13 +40,13 @@ public class Controlador1 {
         }
     }
     
-    /*class subastasEvento implements EventHandler<ActionEvent>{
+    class subastasEvento implements EventHandler<ActionEvent>{
  
         @Override
         public void handle(ActionEvent e) {   
-            PuntajeController controladorpuntaje = new PuntajeController(modelo);
-            controladorpuntaje.mostrarVista();
+            Controladorlista controladorlista = new Controladorlista(crowd);
+            controladorlista.mostrarVista();;
         }
-    }*/
+    }
 }
 
