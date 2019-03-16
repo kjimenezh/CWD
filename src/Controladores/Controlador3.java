@@ -34,7 +34,6 @@ public class Controlador3 {
         view.getMensaje().setText("Valor a subastar: "+subasta.getDemanda().getInversionRequerida());
         view.getList().getItems().add(" : " + "Nombre " + ", " + "Valor de la oferta");
         
-        //Definir
         for(int i = 0; i<subasta.getOfertas().size();i++){
             view.getList().getItems().add((i+1)+ ": " + subasta.getOfertas().get(i).getNombre() + ", " + subasta.getOfertas().get(i).getValoroferta());
         }
@@ -59,7 +58,9 @@ public class Controlador3 {
             Aportante aportante = crowd.getSubasta(nombre).getOfertas().get(crowd.getSubasta(nombre).getOfertas().size()-1);
             view.getFinish().setText("El ganador fue: "+aportante.getNombre());
             
-            
+            crowd.getSubasta(nombre).setTransaccion(50000, crowd.getSubasta(nombre).getDemanda(), aportante);
+            crowd.getSubasta(nombre).getDemanda().setTransaccion(crowd.getSubasta(nombre).getTransaccion());
+            aportante.setTransaccion(crowd.getSubasta(nombre).getTransaccion());
         }   
     }
 }

@@ -19,6 +19,7 @@ import javafx.event.EventHandler;
 public class Controlador2 {
     private Crowdfounding crowd;
     private Vista2 view;
+    private static String nombreP;
     
     public Controlador2(Crowdfounding crowd) {
         this.crowd = crowd;
@@ -58,6 +59,7 @@ public class Controlador2 {
             return;
             }
             
+            Controlador2.nombreP = nombre;
             double precio = Double.parseDouble(precioR);
             double inversion = Double.parseDouble(inversionR);
             
@@ -74,5 +76,9 @@ public class Controlador2 {
             }
         }
     }
-    
+
+    public static String getNombreP() {
+        return nombreP;
+    }
+  
 }

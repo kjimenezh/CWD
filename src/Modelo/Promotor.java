@@ -39,6 +39,5 @@ public class Promotor extends Persona{
     public void setTransaccion(Transaccion transaccion) {
         this.transaccion = transaccion;
     }
-  
     
 }
