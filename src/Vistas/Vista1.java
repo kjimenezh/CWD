@@ -58,6 +58,7 @@ public class Vista1 {
 
     public void mostrar(Stage stage) {
         stage.setTitle("CrowdFounding");
+        stage.getIcons().add(new Image("Images/icon.png")); 
         stage.setScene(scene);
         stage.show();
     }

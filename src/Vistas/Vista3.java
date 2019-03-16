@@ -73,6 +73,7 @@ public class Vista3 {
         
     public void mostrar(Stage stage) {
         stage.setTitle("Subasta Holandesa");
+        stage.getIcons().add(new Image("Images/icon.png")); 
         stage.setScene(scene);
         stage.show();
     }

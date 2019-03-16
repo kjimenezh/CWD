@@ -77,6 +77,7 @@ public class Vista2 {
 
     public void mostrar(Stage stage) {
         stage.setTitle("Registrar Promotor");
+        stage.getIcons().add(new Image("Images/icon.png")); 
         stage.setScene(scene);
         stage.show();
     }

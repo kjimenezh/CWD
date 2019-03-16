@@ -58,6 +58,7 @@ public class Vistalista {
         
     public void mostrar(Stage stage) {
         stage.setTitle("Subastas Realizadas");
+        stage.getIcons().add(new Image("Images/icon.png")); 
         stage.setScene(scene);
         stage.show();
     }
