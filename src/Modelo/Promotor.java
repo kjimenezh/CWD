@@ -19,6 +19,11 @@ public class Promotor extends Persona{
         super(nombre);
         this.inversionRequerida = inversionRequerida;
     }
+
+    public Promotor(int cedula, String nombre, int telefono, String email, double valorEnCuenta, double inversionRequerida) {
+        super(cedula, nombre, telefono, email, valorEnCuenta);
+        this.inversionRequerida = inversionRequerida;
+    }
     
     public double getInversionRequerida() {
         return inversionRequerida;

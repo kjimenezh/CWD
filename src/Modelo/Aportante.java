@@ -19,6 +19,10 @@ public class Aportante extends Persona{
         super(nombre);
         this.cuenta.setValorencuenta(valorencuenta);
     }
+
+    public Aportante(int cedula, String nombre, int telefono, String email, double valorEnCuenta) {
+        super(cedula, nombre, telefono, email, valorEnCuenta);
+    }
     
     public double getValoroferta() {
         return valoroferta;

@@ -20,6 +20,15 @@ public abstract class Persona {
         this.cuenta = new Cuentabancaria();
     }
     
+    public Persona(int cedula, String nombre, int telefono, String email, double valorEnCuenta) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.email = email;
+        this.cuenta = new Cuentabancaria();
+        this.cuenta.setValorencuenta(valorEnCuenta);
+    }
+    
     public Persona(String nombre){
         this.nombre = nombre;
         this.cuenta = new Cuentabancaria();
