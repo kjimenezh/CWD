@@ -60,13 +60,19 @@ public class Controlador2 {
             }
             
             Controlador2.nombreP = nombre;
-            double precio = Double.parseDouble(precioR);
-            double inversion = Double.parseDouble(inversionR);
-            
-            Promotor demanda = new Promotor(nombre,inversion);
-  
+            double precio;
+            double inversion;
             Boolean erg = false;
-            erg = crowd.getSubastas().add(new Subasta(precio,demanda));
+            Promotor demanda;
+            
+            try{
+                precio = Double.parseDouble(precioR);
+                inversion = Double.parseDouble(inversionR);
+                demanda = new Promotor(nombre,inversion);
+                erg = crowd.getSubastas().add(new Subasta(precio,demanda));
+            }catch(NumberFormatException nE){
+                view.getMensajeFinal().setText("Escriba solo numeros en precio e inversion");
+            }
           
             if(erg){
                 Controlador3 controlador3 = new Controlador3(crowd,nombre);

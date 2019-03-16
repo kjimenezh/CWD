@@ -53,19 +53,23 @@ public class Controlador4 {
                 view.getMensajeFinal().setText("Ingrese la información completa!");
             return;
             }
-
-            double valorcu = Double.parseDouble(valorc);
-            double valorof = Double.parseDouble(valoro);
-            double tasaof = Double.parseDouble(tasao);
-            
-            Aportante oferta = new Aportante(nombre,valorcu);
-            oferta.setValoroferta(valorof);
-            oferta.setTasadeinteres(tasaof);
-            oferta.setTiempo(tiempo);
-  
+            double valorcu;
+            double valorof;
+            double tasaof;
+            Aportante oferta;
             Boolean erg = false;
-            erg = crowd.getSubasta(Controlador2.getNombreP()).addOferta(oferta);
-          
+            try{
+                valorcu = Double.parseDouble(valorc);
+                valorof = Double.parseDouble(valoro);
+                tasaof = Double.parseDouble(tasao);
+                oferta = new Aportante(nombre,valorcu);
+                oferta.setValoroferta(valorof);
+                oferta.setTasadeinteres(tasaof);
+                oferta.setTiempo(tiempo);
+                erg = crowd.getSubasta(Controlador2.getNombreP()).addOferta(oferta);
+            }catch(NumberFormatException nE){
+                view.getMensajeFinal().setText("Escriba solo numeros en valocu e valorof");
+            }
             if(erg){
                 view.getMensajeFinal().setText("Oferta registrada existosamente");
             }else{
