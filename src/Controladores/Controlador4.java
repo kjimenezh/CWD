@@ -1,12 +1,16 @@
 
 package Controladores;
 
+import Database.GestionArchivo;
 import Main.Singleton;
 import Modelo.Aportante;
 import Modelo.Crowdfounding;
 import Modelo.Promotor;
 import Modelo.Subasta;
 import Vistas.Vista4;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -58,6 +62,8 @@ public class Controlador4 {
             double tasaof;
             Aportante oferta;
             Boolean erg = false;
+            GestionArchivo archivo = new GestionArchivo("DatosPersonas.txt");
+            
             try{
                 valorcu = Double.parseDouble(valorc);
                 valorof = Double.parseDouble(valoro);
@@ -66,9 +72,12 @@ public class Controlador4 {
                 oferta.setValoroferta(valorof);
                 oferta.setTasadeinteres(tasaof);
                 oferta.setTiempo(tiempo);
+                archivo.saveAportante(oferta);
                 erg = crowd.getSubasta(Controlador2.getNombreP()).addOferta(oferta);
             }catch(NumberFormatException nE){
                 view.getMensajeFinal().setText("Escriba solo numeros en valocu e valorof");
+            } catch (IOException ex) {
+                Logger.getLogger(Controlador4.class.getName()).log(Level.SEVERE, null, ex);
             }
             if(erg){
                 view.getMensajeFinal().setText("Oferta registrada existosamente");

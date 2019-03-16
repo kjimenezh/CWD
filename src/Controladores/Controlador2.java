@@ -1,6 +1,7 @@
 
 package Controladores;
 
+import Database.GestionArchivo;
 import Main.Singleton;
 import Modelo.Crowdfounding;
 import Modelo.Promotor;
@@ -64,14 +65,18 @@ public class Controlador2 {
             double inversion;
             Boolean erg = false;
             Promotor demanda;
+            GestionArchivo archivo = new GestionArchivo("DatosPersonas.txt");
             
             try{
                 precio = Double.parseDouble(precioR);
                 inversion = Double.parseDouble(inversionR);
                 demanda = new Promotor(nombre,inversion);
+                archivo.savePromotor(demanda);
                 erg = crowd.getSubastas().add(new Subasta(precio,demanda));
             }catch(NumberFormatException nE){
                 view.getMensajeFinal().setText("Escriba solo numeros en precio e inversion");
+            } catch (IOException ex) {
+                Logger.getLogger(Controlador2.class.getName()).log(Level.SEVERE, null, ex);
             }
           
             if(erg){

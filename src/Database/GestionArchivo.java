@@ -23,7 +23,7 @@ public class GestionArchivo {
         this.ruta = ruta;
     }
     
-    //El formato de guardado por linea es: true,Cedula,Nombre,Telefono,Email,ValorEnCuenta,InversionRequerida,
+    //El formato de guardado por linea es: true,Nombre,ValorenCuenta,InversionRequerida,
     public boolean savePromotor(Promotor persona)throws FileNotFoundException, IOException{
         BufferedWriter salida = null;
         FileWriter fw = null;
@@ -39,13 +39,7 @@ public class GestionArchivo {
         
         salida.write(String.valueOf(true));
         salida.write(",");
-        salida.write(String.valueOf(persona.getCedula()));
-        salida.write(",");
         salida.write(persona.getNombre());
-        salida.write(",");
-        salida.write(String.valueOf(persona.getTelefono()));
-        salida.write(",");
-        salida.write(persona.getEmail());
         salida.write(",");
         salida.write(String.valueOf(persona.getCuenta().getValorencuenta()));
         salida.write(",");
@@ -56,7 +50,7 @@ public class GestionArchivo {
         return true;
     }
     
-    //El formato de guardado por linea es: false,Cedula,Nombre,Telefono,Email,ValorEnCuenta,
+    //El formato de guardado por linea es: false,Nombre,ValorEnCuenta,
     public boolean saveAportante(Aportante persona)throws FileNotFoundException, IOException{
         BufferedWriter salida = null;
         FileWriter fw = null;
@@ -72,13 +66,7 @@ public class GestionArchivo {
         
         salida.write(String.valueOf(false));
         salida.write(",");
-        salida.write(String.valueOf(persona.getCedula()));
-        salida.write(",");
         salida.write(persona.getNombre());
-        salida.write(",");
-        salida.write(String.valueOf(persona.getTelefono()));
-        salida.write(",");
-        salida.write(persona.getEmail());
         salida.write(",");
         salida.write(String.valueOf(persona.getCuenta().getValorencuenta()));
         salida.write(",\n");

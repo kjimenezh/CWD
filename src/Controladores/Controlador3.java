@@ -24,7 +24,8 @@ public class Controlador3 {
         this.view = new Vista3();
        
         view.getRegistrar().setOnAction(new registrarEventHandler());   
-        view.getFinalizar().setOnAction(new finalizarEventHandler());  
+        view.getFinalizar().setOnAction(new finalizarEventHandler()); 
+        view.getRegresar().setOnAction(new regresarEventHandler());
     }
     
     public void mostrarVista(){
@@ -62,5 +63,14 @@ public class Controlador3 {
             crowd.getSubasta(nombre).getDemanda().setTransaccion(crowd.getSubasta(nombre).getTransaccion());
             aportante.setTransaccion(crowd.getSubasta(nombre).getTransaccion());
         }   
+    }
+    
+    class regresarEventHandler implements EventHandler<ActionEvent>{
+ 
+        @Override
+        public void handle(ActionEvent e) {   
+            Controlador1 controlador1 = new Controlador1(crowd);
+            controlador1.mostrarVista();
+        }
     }
 }

@@ -31,6 +31,7 @@ public class Vista3 {
     private ListView<String> list;   
     private Button registrar;
     private Button finalizar;
+    private Button regresar;
     private Text finish;
 
     public Vista3(){
@@ -57,8 +58,10 @@ public class Vista3 {
         HBox hlayout = new HBox();
         registrar = new Button("Agregar Ofertas");
         finalizar = new Button("Finalizar Subasta");
+        regresar = new Button("Menu principal");
         hlayout.getChildren().add(registrar);
         hlayout.getChildren().add(finalizar);
+        hlayout.getChildren().add(regresar);
         grid.add(hlayout, 0, 2);
         finish = new Text();
         grid.add(finish, 0, 3);
@@ -92,6 +95,10 @@ public class Vista3 {
 
     public Text getFinish() {
         return finish;
+    }
+
+    public Button getRegresar() {
+        return regresar;
     }
    
 }

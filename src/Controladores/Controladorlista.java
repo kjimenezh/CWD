@@ -25,11 +25,13 @@ public class Controladorlista {
     public void mostrarVista(){
         Singleton singleton = Singleton.getSingleton();
         
-        view.getList().getItems().add("# Subasta : Promotor, Aportante ganador");
+        view.getList().getItems().add("# Subasta : Valor Subastado, Promotor, Aportante ganador, Valor Oferta");
         
         for(int i = 0; i<crowd.getSubastas().size();i++){
-            view.getList().getItems().add((i+1)+ ": " + crowd.getSubastas().get(i).getDemanda().getNombre()
-                    +", "+crowd.getSubastas().get(i).getOfertas().get(crowd.getSubastas().get(i).getOfertas().size()-1).getNombre());
+            view.getList().getItems().add((i+1)+ ": " + crowd.getSubastas().get(i).getDemanda().getInversionRequerida()
+                    +", "+crowd.getSubastas().get(i).getDemanda().getNombre()+", "+
+                    crowd.getSubastas().get(i).getOfertas().get(crowd.getSubastas().get(i).getOfertas().size()-1).getNombre()
+                    +", "+crowd.getSubastas().get(i).getOfertas().get(crowd.getSubastas().get(i).getOfertas().size()-1).getValoroferta());
         }
      
         view.mostrar(singleton.getStage());
