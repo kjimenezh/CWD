@@ -29,7 +29,7 @@ public class Controladorlista {
         
         for(int i = 0; i<crowd.getSubastas().size();i++){
             view.getList().getItems().add((i+1)+ ": " + crowd.getSubastas().get(i).getDemanda().getNombre()
-                    +", "+crowd.getSubastas().get(i).getOfertas().get(crowd.getSubastas().get(i).getOfertas().size()-1));
+                    +", "+crowd.getSubastas().get(i).getOfertas().get(crowd.getSubastas().get(i).getOfertas().size()-1).getNombre());
         }
      
         view.mostrar(singleton.getStage());
