@@ -96,7 +96,7 @@ public class Vista4 {
     }
     
     public void mostrar(Stage stage) {
-        stage.setTitle("Registrar Promotor");
+        stage.setTitle("Registrar Aportable");
         stage.getIcons().add(new Image("Images/icon.png")); 
         stage.setScene(scene);
         stage.show();
