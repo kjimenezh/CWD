@@ -11,13 +11,15 @@ public class Aportante extends Persona{
     private String tiempo;
     private Transaccion transaccion;
 
-    public Aportante(int cedula, String nombre, int telefono, String email, double valorencuenta) {
-        super(cedula, nombre, telefono, email, valorencuenta);
+    public Aportante(int cedula, String nombre, int telefono, String email) {
+        super(cedula, nombre, telefono, email);
     }
     
-    public Aportante(String nombre, double valorencuenta){
-        super(nombre,valorencuenta);
+    public Aportante(String nombre,double valorencuenta){
+        super(nombre);
+        this.cuenta.setValorencuenta(valorencuenta);
     }
+    
     public double getValoroferta() {
         return valoroferta;
     }

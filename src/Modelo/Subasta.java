@@ -43,8 +43,4 @@ public class Subasta {
         this.transaccion = new Transaccion(precio,demanda,oferta);
     }
     
-    public void iniciarSubasta(){
-        System.out.println("Cantidad a subastar: "+this.getDemanda().getInversionRequerida());
-        
-    }
 }

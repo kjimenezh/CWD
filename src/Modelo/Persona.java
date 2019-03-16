@@ -12,17 +12,17 @@ public abstract class Persona {
     protected String email;
     protected Cuentabancaria cuenta;
 
-    public Persona(int cedula, String nombre, int telefono, String email, double valorencuenta) {
+    public Persona(int cedula, String nombre, int telefono, String email) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.telefono = telefono;
         this.email = email;
-        this.cuenta = new Cuentabancaria(valorencuenta);
+        this.cuenta = new Cuentabancaria();
     }
     
-    public Persona(String nombre, double valorencuenta){
+    public Persona(String nombre){
         this.nombre = nombre;
-        this.cuenta = new Cuentabancaria(valorencuenta);
+        this.cuenta = new Cuentabancaria();
     }
     
     public int getCedula() {

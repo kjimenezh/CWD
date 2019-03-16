@@ -8,8 +8,7 @@ package Modelo;
 public class Cuentabancaria {
     private double valorencuenta;
 
-    public Cuentabancaria(double valorencuenta) {
-        this.valorencuenta = valorencuenta;
+    public Cuentabancaria() {
     }
 
     public double getValorencuenta() {

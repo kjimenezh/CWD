@@ -24,7 +24,16 @@ public class Crowdfounding {
         return subastas;
     }
     
-    public static void main(String[] args){
+    public Subasta getSubasta(String nombre){
+        Subasta subasta = null;
+        for(Subasta s : subastas){
+            if(s.getDemanda().getNombre().equals(nombre)){
+                subasta = s;
+            }
+        }
+        return subasta;
+    }
+    /*public static void main(String[] args){
         Crowdfounding crowd = new Crowdfounding();
         Scanner lectura = new Scanner(System.in);
         int a = 0;
@@ -67,5 +76,5 @@ public class Crowdfounding {
                 break;         
         }
         }while(a<2);
-    }   
+    }   */
 }

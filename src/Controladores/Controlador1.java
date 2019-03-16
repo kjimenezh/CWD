@@ -35,14 +35,8 @@ public class Controlador1 {
  
         @Override
         public void handle(ActionEvent e) {   
-            LoopJuegoController controladorloop = new LoopJuegoController(modelo);
-
-            try {
-                controladorloop.mostrarVista();
-            } catch (IOException ex) {
-                Logger.getLogger(VentanamenuController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
+            Controlador2 controlador2 = new Controlador2(crowd);
+            controlador2.mostrarVista();
         }
     }
     

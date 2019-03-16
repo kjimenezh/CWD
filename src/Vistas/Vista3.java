@@ -6,10 +6,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -18,24 +20,20 @@ import javafx.stage.Stage;
  *
  * @author kjime
  */
-public class Vista2 {
+public class Vista3 {
     private Scene scene;
 
     private GridPane grid;
     private StackPane pane; 
     
     private Image image;
-    private Text mensajeInicial;
-    private Text mensajeFinal;
-    private Label precioBase;
-    private TextField precioBaseS;
-    private Label nombreP;
-    private TextField nombrePT;
-    private Label inversionP;
-    private TextField inversionPT;
+    private Text mensaje;
+    private ListView<String> list;   
     private Button registrar;
+    private Button finalizar;
+    private Text finish;
 
-    public Vista2(){
+    public Vista3(){
         grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
@@ -43,7 +41,7 @@ public class Vista2 {
         grid.setPadding(new Insets(15, 15, 15, 15));
 
         pane = new StackPane();
-
+        
         image = new Image("Images/Biblioteca.png");
         ImageView imageV = new ImageView();
         imageV.setImage(image);
@@ -51,54 +49,49 @@ public class Vista2 {
         imageV.setFitWidth(600);
         pane.getChildren().add(imageV);
         
-        precioBase = new Label("Precio de reserva: ");
-        grid.add(precioBase, 0, 0);
-        precioBaseS = new TextField();
-        grid.add(precioBaseS, 0, 1);
-        mensajeInicial = new Text("Ingrese los datos del promotor");
-        grid.add(mensajeInicial, 0, 2);
-        nombreP = new Label("Nombre: ");
-        grid.add(nombreP, 0, 3);
-        nombrePT = new TextField();
-        grid.add(nombrePT, 1, 3);
-        inversionP = new Label("Inversion Requerida: ");
-        grid.add(inversionP, 0, 5);
-        inversionPT = new TextField();
-        grid.add(inversionPT, 1, 4);
-        registrar = new Button("Registrar");
-        grid.add(registrar, 0, 5);
-        mensajeFinal = new Text();
-        grid.add(mensajeFinal, 0, 6);
+        mensaje = new Text();
+        grid.add(mensaje, 0, 0);
+        list = new ListView<>();
+        list.setMinWidth(200);     
+        grid.add(list, 0, 1);
+        HBox hlayout = new HBox();
+        registrar = new Button("Agregar Ofertas");
+        finalizar = new Button("Finalizar Subasta");
+        hlayout.getChildren().add(registrar);
+        hlayout.getChildren().add(finalizar);
+        grid.add(hlayout, 0, 2);
+        finish = new Text();
+        grid.add(finish, 0, 3);
         
         pane.setAlignment(Pos.CENTER);
         pane.getChildren().add(grid);
         scene = new Scene(pane, 600, 600);
     }
-
+        
     public void mostrar(Stage stage) {
-        stage.setTitle("Registrar Promotor");
+        stage.setTitle("Subasta Holandesa");
         stage.setScene(scene);
         stage.show();
     }
-
-    public Text getMensajeFinal() {
-        return mensajeFinal;
+    
+    public Text getMensaje() {
+        return mensaje;
     }
 
-    public TextField getNombrePT() {
-        return nombrePT;
-    }
-
-    public TextField getInversionPT() {
-        return inversionPT;
+    public ListView<String> getList() {
+        return list;
     }
 
     public Button getRegistrar() {
         return registrar;
     }
 
-    public TextField getPrecioBaseS() {
-        return precioBaseS;
+    public Button getFinalizar() {
+        return finalizar;
     }
-    
+
+    public Text getFinish() {
+        return finish;
+    }
+   
 }

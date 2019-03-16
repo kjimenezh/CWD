@@ -10,13 +10,13 @@ public class Promotor extends Persona{
     private Iniciativa iniciativa;
     private Transaccion transaccion;
     
-    public Promotor(int cedula, String nombre, int telefono, String email, double valorencuenta,double inversionRequerida) {
-        super(cedula, nombre, telefono, email, valorencuenta);
+    public Promotor(int cedula, String nombre, int telefono, String email,double inversionRequerida) {
+        super(cedula, nombre, telefono, email);
         this.inversionRequerida = inversionRequerida;
     }
     
-    public Promotor(String nombre, double valorencuenta, double inversionRequerida){
-        super(nombre,valorencuenta);
+    public Promotor(String nombre, double inversionRequerida){
+        super(nombre);
         this.inversionRequerida = inversionRequerida;
     }
     
