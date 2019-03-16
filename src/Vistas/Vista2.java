@@ -44,27 +44,27 @@ public class Vista2 {
 
         pane = new StackPane();
 
-        image = new Image("Images/Biblioteca.png");
+        image = new Image("Images/Subasta.jpg");
         ImageView imageV = new ImageView();
         imageV.setImage(image);
-        imageV.setFitHeight(600);
+        imageV.setFitHeight(450);
         imageV.setFitWidth(600);
         pane.getChildren().add(imageV);
         
         precioBase = new Label("Precio de reserva: ");
         grid.add(precioBase, 0, 0);
         precioBaseS = new TextField();
-        grid.add(precioBaseS, 0, 1);
+        grid.add(precioBaseS, 1, 0);
         mensajeInicial = new Text("Ingrese los datos del promotor");
-        grid.add(mensajeInicial, 0, 2);
+        grid.add(mensajeInicial, 0, 1);
         nombreP = new Label("Nombre: ");
-        grid.add(nombreP, 0, 3);
+        grid.add(nombreP, 0, 2);
         nombrePT = new TextField();
-        grid.add(nombrePT, 1, 3);
+        grid.add(nombrePT, 1, 2);
         inversionP = new Label("Inversion Requerida: ");
-        grid.add(inversionP, 0, 5);
+        grid.add(inversionP, 0, 3);
         inversionPT = new TextField();
-        grid.add(inversionPT, 1, 4);
+        grid.add(inversionPT, 1, 3);
         registrar = new Button("Registrar");
         grid.add(registrar, 0, 5);
         mensajeFinal = new Text();
@@ -72,7 +72,7 @@ public class Vista2 {
         
         pane.setAlignment(Pos.CENTER);
         pane.getChildren().add(grid);
-        scene = new Scene(pane, 600, 600);
+        scene = new Scene(pane, 600, 450);
     }
 
     public void mostrar(Stage stage) {

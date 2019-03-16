@@ -19,7 +19,7 @@ public class Main extends Application{
         
         //GestionArchivo archivo = new GestionArchivo("datos.txt");
 
-        Crowdfounding crowd= new Crowdfounding();
+        Crowdfounding crowd = new Crowdfounding();
         //crowd.setUsers(archivo.loadUsers());
         //invocar el controlador de la vista que quiero visualizar
         Controlador1 controlador1 = new Controlador1(crowd);

@@ -34,10 +34,10 @@ public class Vista1 {
 
         pane = new StackPane();
 
-        image = new Image("Images/Biblioteca.png");
+        image = new Image("Images/Subasta.jpg");
         ImageView imageV = new ImageView();
         imageV.setImage(image);
-        imageV.setFitHeight(600);
+        imageV.setFitHeight(450);
         imageV.setFitWidth(600);
         pane.getChildren().add(imageV);
 
@@ -50,7 +50,7 @@ public class Vista1 {
         
         pane.setAlignment(Pos.CENTER);
         pane.getChildren().add(grid);
-        scene = new Scene(pane, 600, 600);
+        scene = new Scene(pane, 600, 450);
     }
 
     public void mostrar(Stage stage) {
