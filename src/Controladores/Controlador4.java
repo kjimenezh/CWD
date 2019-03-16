@@ -2,6 +2,7 @@
 package Controladores;
 
 import Main.Singleton;
+import Modelo.Aportante;
 import Modelo.Crowdfounding;
 import Modelo.Promotor;
 import Modelo.Subasta;
@@ -36,37 +37,37 @@ public class Controlador4 {
         public void handle(ActionEvent e) {   
             view.getMensajeFinal().setText("");
             
-            String precioR = view.getPrecioBaseS().getText();
-            String nombre = view.getNombrePT().getText();
-            String inversionR = view.getInversionPT().getText();
+            String nombre = view.getNombreAT().getText();
+            String valorc = view.getValorcAT().getText();
+            String valoro = view.getValoroAT().getText();
+            String tasao = view.getTasaoAT().getText();
+            String tiempo = view.getTiempooAT().getText();
          
-            view.getNombrePT().setText("");
-            view.getInversionPT().setText("");
+            view.getNombreAT().setText("");
+            view.getValorcAT().setText("");
+            view.getValoroAT().setText("");
+            view.getTasaoAT().setText("");
+            view.getTiempooAT().setText("");
             
-            if(precioR.isEmpty()){
-                view.getMensajeFinal().setText("Ingrese el precio de reserva!");
+            if(nombre.isEmpty()||valorc.isEmpty()||valoro.isEmpty()||tasao.isEmpty()||tiempo.isEmpty()){
+                view.getMensajeFinal().setText("Ingrese la información completa!");
             return;
             }
-            if(nombre.isEmpty()){
-                view.getMensajeFinal().setText("Ingrese el nombre!");
-            return;
-            }
-            if(inversionR.isEmpty()){
-                view.getMensajeFinal().setText("Ingrese la inversion!");
-            return;
-            }
+
+            double valorcu = Double.parseDouble(valorc);
+            double valorof = Double.parseDouble(valoro);
+            double tasaof = Double.parseDouble(tasao);
             
-            double precio = Double.parseDouble(precioR);
-            double inversion = Double.parseDouble(inversionR);
-            
-            Promotor demanda = new Promotor(nombre,inversion);
+            Aportante oferta = new Aportante(nombre,valorcu);
+            oferta.setValoroferta(valorof);
+            oferta.setTasadeinteres(tasaof);
+            oferta.setTiempo(tiempo);
   
             Boolean erg = false;
-            erg = crowd.getSubastas().add(new Subasta(precio,demanda));
+            erg = crowd.getSubasta(Controlador2.getNombreP()).addOferta(oferta);
           
             if(erg){
-                Controlador3 controlador3 = new Controlador3(crowd,nombre);
-                controlador3.mostrarVista();
+                view.getMensajeFinal().setText("Oferta registrada existosamente");
             }else{
                 view.getMensajeFinal().setText("No se registro correctamente la información");
             }
