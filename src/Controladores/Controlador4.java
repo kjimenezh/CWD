@@ -62,7 +62,7 @@ public class Controlador4 {
             double tasaof;
             Aportante oferta;
             Boolean erg = false;
-            GestionArchivo archivo = new GestionArchivo("DatosPersonas.txt");
+            GestionArchivo archivo = new GestionArchivo("DatosPersonas.txt","DatosSubastas.txt");
             
             try{
                 valorcu = Double.parseDouble(valorc);

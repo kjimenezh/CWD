@@ -11,16 +11,19 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import Modelo.Persona;
 import Modelo.Promotor;
+import Modelo.Subasta;
 
 
 /**
  * @author kjime
  */
 public class GestionArchivo {
-    private String ruta;
+    private String rutaPersonas;
+    private String rutaSubastas;
 
-    public GestionArchivo(String ruta) {
-        this.ruta = ruta;
+    public GestionArchivo(String rutaPersonas, String rutaSubastas) {
+        this.rutaPersonas = rutaPersonas;
+        this.rutaSubastas = rutaSubastas;
     }
     
     //El formato de guardado por linea es: true,Nombre,ValorenCuenta,InversionRequerida,
@@ -28,7 +31,7 @@ public class GestionArchivo {
         BufferedWriter salida = null;
         FileWriter fw = null;
 
-        File file = new File(this.ruta);
+        File file = new File(this.rutaPersonas);
         if (!file.exists()) {
             file.createNewFile();
         }
@@ -55,7 +58,7 @@ public class GestionArchivo {
         BufferedWriter salida = null;
         FileWriter fw = null;
 
-        File file = new File(this.ruta);
+        File file = new File(this.rutaPersonas);
         if (!file.exists()) {
             file.createNewFile();
         }
@@ -75,12 +78,38 @@ public class GestionArchivo {
         return true;
     }
     
-    public ArrayList<Persona> loadUsers(){
-        ArrayList<Persona> users = new ArrayList<Persona>();
+    public boolean saveSubasta(double valorSubastado, String nombrePromotor, String nombreGanador, double valorOferta) throws IOException{
+        BufferedWriter salida = null;
+        FileWriter fw = null;
+
+        File file = new File(this.rutaSubastas);
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+            
+        //El true permite seguir escribiendo en el archivo sin que s sobreescriba lo ya existente
+        fw = new FileWriter(file.getAbsoluteFile(), true);
+        salida = new BufferedWriter(fw);
+        
+        salida.write(String.valueOf(valorSubastado));
+        salida.write(",");
+        salida.write(nombrePromotor);
+        salida.write(",");
+        salida.write(nombreGanador);
+        salida.write(",");
+        salida.write(String.valueOf(valorOferta));
+        salida.write(",\n");
+        salida.flush();
+        salida.close();
+        return true;
+    }
+    
+    public ArrayList<Persona> loadPersonas(){
+        ArrayList<Persona> personas = new ArrayList<Persona>();
         Scanner sc;
         
         try {
-            sc = new Scanner(new File(this.ruta));
+            sc = new Scanner(new File(this.rutaPersonas));
             sc.useDelimiter(",");
             while (sc.hasNext()) {
                 boolean promotor = Boolean.parseBoolean(sc.next().trim());
@@ -89,20 +118,54 @@ public class GestionArchivo {
                 int telefono = Integer.parseInt(sc.next().trim());
                 String email = sc.next().trim();
                 double valorEnCuenta = Double.parseDouble(sc.next().trim());
-                Persona user = null;
+                Persona persona = null;
                 if (promotor) {
                     double inversionRequerida = Double.parseDouble(sc.next().trim());
-                    user = new Promotor(cedula,nombre,telefono,email,valorEnCuenta,inversionRequerida);
+                    persona = new Promotor(cedula,nombre,telefono,email,valorEnCuenta,inversionRequerida);
                 }else{
-                    user = new Aportante(cedula,nombre,telefono,email,valorEnCuenta);
+                    persona = new Aportante(cedula,nombre,telefono,email,valorEnCuenta);
                 }
-                users.add(user);
+                personas.add(persona);
             }
 	}catch (FileNotFoundException e) {
-            System.out.println("File not found -- " + this.ruta);
+            System.out.println("File not found -- " + this.rutaPersonas);
             e.printStackTrace();
 	}
-	return users;
+	return personas;
+    }
+    
+    public ArrayList<Subasta> loadSubastas(){
+        ArrayList<Subasta> subastas = new ArrayList<Subasta>();
+        ArrayList<Persona> personas = loadPersonas();
+        Scanner sc;
+        
+        try {
+            sc = new Scanner(new File(this.rutaSubastas));
+            sc.useDelimiter(",");
+            while (sc.hasNext()) {
+                double precioReserva = Double.parseDouble(sc.next().trim());
+                String nombrePromotor = sc.next().trim();
+                String nombreGanador = sc.next().trim();
+                double valorOferta = Double.parseDouble(sc.next().trim());
+                Promotor promotor = null;
+                Aportante aportante = null;
+                for (int i = 0; i < personas.size(); i++) {
+                    if (personas.get(i).getNombre().equals(nombrePromotor)) {
+                        promotor = (Promotor) personas.get(i);
+                    }
+                    if (personas.get(i).getNombre().equals(nombreGanador)) {
+                        aportante = (Aportante) personas.get(i);
+                    }
+                }
+                Subasta subasta = new Subasta(precioReserva,promotor);
+                subasta.setTransaccion(precioReserva, promotor, aportante);
+                subastas.add(subasta);
+            }
+	}catch (FileNotFoundException e) {
+            System.out.println("File not found -- " + this.rutaPersonas);
+            e.printStackTrace();
+	}
+	return subastas;
     }
 }
 

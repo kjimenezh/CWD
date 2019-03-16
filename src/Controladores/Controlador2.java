@@ -65,7 +65,7 @@ public class Controlador2 {
             double inversion;
             Boolean erg = false;
             Promotor demanda;
-            GestionArchivo archivo = new GestionArchivo("DatosPersonas.txt");
+            GestionArchivo archivo = new GestionArchivo("DatosPersonas.txt","DatosSubastas.txt");
             
             try{
                 precio = Double.parseDouble(precioR);
